@@ -2,6 +2,8 @@
 ;; M-x package-install, select use-package. But if you start via
 ;; `standalone.el', this is being taken care of automatically.
 
+(load-theme 'deeper-blue t)
+
 (require 'package)
 ;; (package-initialize)
 

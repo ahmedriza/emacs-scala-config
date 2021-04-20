@@ -52,7 +52,7 @@
       ring-bell-function 'ignore)
 
 (tool-bar-mode 0)
-(menu-bar-mode 0)
+;; (menu-bar-mode 0)
 (when (fboundp 'scroll-bar-mode)
   (scroll-bar-mode 0))
 
