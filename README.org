@@ -1,0 +1,10 @@
+#+STARTUP: showeverything
+
+* .emacs.d config for Scala based on the emacs config for Rust [https://robert.kra.hn/posts/2021-02-07_rust-with-emacs/].
+
+To run emacs with just this config, clone this repo, then:
+
+#+begin_src shell
+emacs -q --load "/path/to/standalone.el"
+#+end_src
+
