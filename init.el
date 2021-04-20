@@ -14,12 +14,14 @@
 
 (require 'use-package)
 
+;; ----------------------------- treemacs -----------------------
+
 ;; treemacs
 (global-set-key [f8] 'treemacs)
 (setq lsp-enable-file-watchers nil)
 (setq treemacs-no-png-images t)
 ;; (setq treemacs-toggle-fixed-width t)
-(setq treemacs-width 35)
+(setq treemacs-width 55)
 (when window-system
   (use-package treemacs
   :config
@@ -27,6 +29,26 @@
                         :foreground (face-attribute 'default :foreground)
                         :height 1.0
                         :weight 'normal)))
+
+;; ----------------------------- magit -----------------------------
+
+(use-package magit
+  :config
+  (global-set-key (kbd "C-x g") 'magit-status)
+  (setq magit-refresh-status-buffer nil))
+
+;; ----------------------------- org mode and babel-----------------
+
+;; active Babel languages
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((http . t)
+   (shell . t)))
+
+;; for Markdown export support
+(require 'ox-md)
+
+;; ---------------------------- scala ------------------------
 
 ;; Enable defer and ensure by default for use-package
 ;; Keep auto-save/backup files separate from source code:  https://github.com/scalameta/metals/issues/1027
