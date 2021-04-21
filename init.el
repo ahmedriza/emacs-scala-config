@@ -3,6 +3,7 @@
 ;; `standalone.el', this is being taken care of automatically.
 
 (load-theme 'deeper-blue t)
+(global-display-line-numbers-mode)
 
 (require 'package)
 ;; (package-initialize)
