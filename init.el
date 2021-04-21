@@ -4,6 +4,9 @@
 
 (load-theme 'deeper-blue t)
 (global-display-line-numbers-mode)
+;; open buffers in read-only mode by default
+;; toggle with C-x C-q
+(add-hook 'find-file-hook (lambda () (setq buffer-read-only t)))
 
 (require 'package)
 ;; (package-initialize)
