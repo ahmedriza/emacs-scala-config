@@ -8,6 +8,10 @@
 ;; toggle with C-x C-q
 (add-hook 'find-file-hook (lambda () (setq buffer-read-only t)))
 
+(column-number-mode t)
+(global-display-fill-column-indicator-mode)
+(setq-default display-fill-column-indicator-column 120)
+
 (require 'package)
 ;; (package-initialize)
 
