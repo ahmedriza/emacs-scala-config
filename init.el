@@ -25,6 +25,13 @@
 (global-display-fill-column-indicator-mode)
 (setq-default display-fill-column-indicator-column 120)
 
+(global-set-key (kbd "C-x 1")
+  (lambda ()
+  (interactive)
+  (if (yes-or-no-p (concat "Really close all windows in this frame except"
+  (buffer-name) "? "))
+  (delete-other-windows))))
+
 ;; ----------------------------- find-files ----------------------
 
 ;; https://github.com/redguardtoo/find-file-in-project
