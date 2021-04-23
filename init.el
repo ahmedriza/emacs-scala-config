@@ -138,7 +138,9 @@
   ;;       (setq lsp-idle-delay 0.500)
   ;;       (setq lsp-log-io nil)
   ;;       (setq lsp-completion-provider :capf)
-  (setq lsp-prefer-flymake nil))
+  (setq lsp-prefer-flymake nil)
+  (global-set-key [f12] 'lsp-format-buffer)
+  )
 
 ;; Add metals backend for lsp-mode
 (use-package lsp-metals
