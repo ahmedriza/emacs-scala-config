@@ -35,7 +35,11 @@
 ;; ----------------------------- find-files ----------------------
 
 ;; https://github.com/redguardtoo/find-file-in-project
-(require 'find-file-in-project)
+(use-package find-file-in-project
+  :ensure
+  :config
+  (global-set-key (kbd "C-c f") 'find-file-in-project)
+  )
 
 ;; ----------------------------- which-key -----------------------
 
