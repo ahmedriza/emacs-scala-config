@@ -32,6 +32,8 @@
   (buffer-name) "? "))
   (delete-other-windows))))
 
+(show-paren-mode 1)
+
 ;; ----------------------------- find-files ----------------------
 
 ;; https://github.com/redguardtoo/find-file-in-project
