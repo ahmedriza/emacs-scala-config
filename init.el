@@ -32,6 +32,7 @@
   (buffer-name) "? "))
   (delete-other-windows))))
 
+(setq show-paren-delay 0)
 (show-paren-mode 1)
 
 ;; ----------------------------- find-files ----------------------
