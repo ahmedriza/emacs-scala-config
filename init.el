@@ -1,17 +1,3 @@
-;; When using this directly, you will need to have use-package installed:
-;; M-x package-install, select use-package. But if you start via
-;; `standalone.el', this is being taken care of automatically.
-
-(require 'package)
-;; (package-initialize)
-
-;; Install use-package if not already installed
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
-(require 'use-package)
-
 ;; ------------------------------- global options ------------------
 
 (load-theme 'deeper-blue t)
@@ -89,25 +75,6 @@
   (global-set-key (kbd "C-x g") 'magit-status)
   (setq magit-refresh-status-buffer nil))
 
-;; ----------------------------- org mode and babel-----------------
-
-;; turn off electric-indent-mode in org-mode as it does some really
-;; weird things to indentation
-(add-hook 'org-mode-hook (lambda () (electric-indent-mode -1)))
-
-(use-package ob-http
-  :ensure
-  )
-
-;; active Babel languages
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((http . t)
-   (shell . t)))
-
-;; for Markdown export support
-(require 'ox-md)
-
 ;; ---------------------------- scala ------------------------
 
 ;; Enable defer and ensure by default for use-package
@@ -152,16 +119,13 @@
   ;;       (setq lsp-idle-delay 0.500)
   ;;       (setq lsp-log-io nil)
   ;;       (setq lsp-completion-provider :capf)
-  (setq lsp-prefer-flymake nil)
-  (global-set-key [f12] 'lsp-format-buffer)
-  )
+  (setq lsp-prefer-flymake nil))
 
 ;; Add metals backend for lsp-mode
-(use-package lsp-metals
-  :config (setq lsp-metals-treeview-show-when-views-received t))
+(use-package lsp-metals)
 
 ;; Enable nice rendering of documentation on hover
-;;   Warning: on some systems this package can reduce your emacs responsiveness significally. 
+;;   Warning: on some systems this package can reduce your emacs responsiveness significally.
 ;;   (See: https://emacs-lsp.github.io/lsp-mode/page/performance/)
 ;;   In that case you have to not only disable this but also remove from the packages since
 ;;   lsp-mode can activate it automatically.
@@ -170,68 +134,17 @@
 ;; lsp-mode supports snippets, but in order for them to work you need to use yasnippet
 ;; If you don't want to use snippets set lsp-enable-snippet to nil in your lsp-mode settings
 ;;   to avoid odd behavior with snippets and indentation
-;; (use-package yasnippet)
-
-(use-package helm-lsp
-  :config
-  (define-key lsp-mode-map [remap xref-find-apropos] #'helm-lsp-workspace-symbol))
-; auto-completion and code snippets
-
-(use-package yasnippet
-  :ensure
-  :config
-  (yas-reload-all)
-  (add-hook 'prog-mode-hook 'yas-minor-mode)
-  (add-hook 'text-mode-hook 'yas-minor-mode))
-
-(defun company-yasnippet-or-completion ()
-  (interactive)
-  (or (do-yas-expand)
-      (company-complete-common)))
-
-(defun check-expansion ()
-  (save-excursion
-    (if (looking-at "\\_>") t
-      (backward-char 1)
-      (if (looking-at "\\.") t
-        (backward-char 1)
-        (if (looking-at "::") t nil)))))
-
-(defun do-yas-expand ()
-  (let ((yas/fallback-behavior 'return-nil))
-    (yas/expand)))
-
-(defun tab-indent-or-complete ()
-  (interactive)
-  (if (minibufferp)
-      (minibuffer-complete)
-    (if (or (not yas/minor-mode)
-            (null (do-yas-expand)))
-        (if (check-expansion)
-            (company-complete-common)
-          (indent-for-tab-command)))))
-
-(use-package company
-  :ensure
-  :bind
-  (:map company-active-map
-              ("C-n". company-select-next)
-              ("C-p". company-select-previous)
-              ("M-<". company-select-first)
-              ("M->". company-select-last))
-  (:map company-mode-map
-        ("<tab>". tab-indent-or-complete)
-        ("TAB". tab-indent-or-complete)))
+(use-package yasnippet)
 
 ;; Use company-capf as a completion provider.
 ;;
 ;; To Company-lsp users:
 ;;   Company-lsp is no longer maintained and has been removed from MELPA.
 ;;   Please migrate to company-capf.
-;; (use-package company
-;;   :hook (scala-mode . company-mode)
-;;   :config
-;;   (setq lsp-completion-provider :capf))
+(use-package company
+  :hook (scala-mode . company-mode)
+  :config
+  (setq lsp-completion-provider :capf))
 
 ;; Use the Debug Adapter Protocol for running tests and debugging
 (use-package posframe
@@ -242,3 +155,4 @@
   (lsp-mode . dap-mode)
   (lsp-mode . dap-ui-mode)
   )
+
