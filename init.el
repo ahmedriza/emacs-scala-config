@@ -1,6 +1,20 @@
+(require 'package)
+
+;; Add melpa to your packages repositories
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
+(package-initialize)
+
+;; Install use-package if not already installed
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(require 'use-package)
+
 ;; ------------------------------- global options ------------------
 
-(load-theme 'deeper-blue t)
+;; (load-theme 'deeper-blue t)
 (global-display-line-numbers-mode)
 
 ;; open buffers in read-only mode by default
@@ -61,7 +75,7 @@
 )
 
 (if (string= (system-name) "precision.onedigit.org")
-  (setq treemacs-width 35)
+  (setq treemacs-width 55)
   (setq treemacs-width 55)
   )
 
@@ -81,7 +95,8 @@
   (global-set-key (kbd "C-x g") 'magit-status)
   (setq magit-refresh-status-buffer nil))
 
-;; ---------------------------- scala ------------------------
+
+;; ---------------------------- scala -----------------------------
 
 ;; Enable defer and ensure by default for use-package
 ;; Keep auto-save/backup files separate from source code:  https://github.com/scalameta/metals/issues/1027
@@ -161,4 +176,3 @@
   (lsp-mode . dap-mode)
   (lsp-mode . dap-ui-mode)
   )
-
