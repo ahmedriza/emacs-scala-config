@@ -96,6 +96,15 @@
   (setq magit-refresh-status-buffer nil))
 
 
+;; ----------------------------- selectrum -----------------------------
+
+(use-package selectrum
+  :ensure
+  :init
+  (selectrum-mode)
+  :custom
+  (completion-styles '(flex substring partial-completion)))
+
 ;; ---------------------------- scala -----------------------------
 
 ;; Enable defer and ensure by default for use-package
