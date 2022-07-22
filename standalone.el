@@ -18,30 +18,6 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-;; I find these light-weight and helpful
-
-;; Which-key to get hints when typing command prefixes
-(use-package which-key
-  :diminish
-  :config
-  ;; Allow C-h to trigger which-key before it is done automatically
-  (setq which-key-show-early-on-C-h t)
-  ;; make sure which-key doesn't show normally but refreshes quickly after it is
-  ;; triggered.
-  (setq which-key-idle-delay 10000)
-  (setq which-key-idle-secondary-delay 0.05)
-  (which-key-mode)
-  ;; (which-key-setup-side-window-bottom)
-  ;; (setq which-key-idle-delay 0.1)
-)
-
-(use-package selectrum
-  :ensure
-  :init
-  (selectrum-mode)
-  :custom
-  (completion-styles '(flex substring partial-completion)))
-
 ;; Some common sense settings
 
 ;; (load-theme 'leuven t)
@@ -53,8 +29,7 @@
 
 (tool-bar-mode 0)
 ;; (menu-bar-mode 0)
-(when (fboundp 'scroll-bar-mode)
-  (scroll-bar-mode 0))
+(when (fboundp 'scroll-bar-mode) (scroll-bar-mode 0))
 
 (cond
  ((member "Monaco" (font-family-list)) (set-face-attribute 'default nil :font "Monaco-11"))
