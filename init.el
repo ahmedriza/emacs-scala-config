@@ -14,7 +14,7 @@
 
 ;; ------------------------------- global options ------------------
 
-;; (load-theme 'deeper-blue t)
+(load-theme 'deeper-blue t)
 (global-display-line-numbers-mode)
 
 ;; open buffers in read-only mode by default
